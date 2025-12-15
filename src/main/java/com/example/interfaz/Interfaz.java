@@ -61,7 +61,7 @@ public class Interfaz {
         for (int i = 0; i < cantidad; i++) {
             System.out.println("\n--- Crear monstruo jefe #" + (i + 1) + " ---");
             Monstruo m = crearMonstruo();
-            bosque.getMonstruosJefe().add(m);
+            bosque.getListasMonstruos().add(m);
         }
 
         return bosque;
@@ -85,5 +85,4 @@ public class Interfaz {
     public Scanner getScanner() {
         return sc;
     }
-
 }

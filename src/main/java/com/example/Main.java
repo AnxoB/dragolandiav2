@@ -31,22 +31,23 @@ public class Main {
 
         //Creamos los hechizos y los guardamos
         Hechizo bolaFuego = new BolaFuego();
-        hechizoCtrl.guardarHechizo(bolaFuego);
         Hechizo rayo = new Rayo();
-        hechizoCtrl.guardarHechizo(rayo);
         Hechizo bolaNieve = new BolaNieve();
-        hechizoCtrl.guardarHechizo(bolaNieve);
+        
 
 
         // El mago aprende los hechizos
         mago.aprenderHechizo(bolaFuego);
         mago.aprenderHechizo(rayo);
 
+        hechizoCtrl.guardarHechizo(bolaFuego);
+        hechizoCtrl.guardarHechizo(rayo);
+        hechizoCtrl.guardarHechizo(bolaNieve);
         // Crear bosque
         Bosque bosque = interfaz.crearBosque();
 
         // Guardar cada monstruo del bosque
-        for (Monstruo m : bosque.getMonstruosJefe()) {
+        for (Monstruo m : bosque.getListasMonstruos()) {
             monstruoCtrl.guardarMonstruo(m);
         }
 
@@ -58,16 +59,16 @@ public class Main {
         bosqueCtrl.guardarBosque(bosque);
 
         // Seleccionar el primer monstruo para la batalla
-        if (bosque.getMonstruosJefe().isEmpty()) {
+        if (bosque.getListasMonstruos().isEmpty()) {
             System.out.println("El bosque no tiene monstruos jefe. No hay batalla.");
             return;
         }
 
-        Monstruo monstruo = bosque.getMonstruosJefe().get(0);
+        Monstruo monstruo = bosque.getListasMonstruos().get(0);
 
         System.out.println("\n¡Comienza la batalla en el bosque " + bosque.getNombre() + "!\n");
 
-        // 6. Simular batalla
+        //Simular batalla
         while (mago.getVida() > 0 && monstruo.getVida() > 0) {
             mago.lanzarHechizoMago(monstruo, rayo);
             System.out.println("El mago lanza un hechizo. Vida del monstruo: " + monstruo.getVida());
@@ -79,7 +80,7 @@ public class Main {
             System.out.println("El monstruo ataca. Vida del mago: " + mago.getVida());
         }
 
-        // 7. Resultado final
+        //Resultado final
         System.out.println("\nBatalla terminada.");
         if (mago.getVida() > 0) {
             System.out.println("El mago sobrevive y domina el bosque.");

@@ -1,6 +1,8 @@
 package com.example.model;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -16,6 +18,8 @@ public class Monstruo {
     private String nombre;
     private int vida;
     private int fuerza;
+
+    @Enumerated (EnumType.STRING)
     private tipoMonstruo tipo;
 
     public Monstruo() {
@@ -81,5 +85,4 @@ public class Monstruo {
     public void atacar(Mago mago) {
         mago.setVida(mago.getVida() - getFuerza());
     }
-
 }

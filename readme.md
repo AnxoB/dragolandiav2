@@ -28,3 +28,4 @@ erDiagram
 
     %% Relaciones
     BOSQUE ||--o{ MONSTRUO : "monstruosJefe"
+```

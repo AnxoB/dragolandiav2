@@ -4,6 +4,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 
 @Entity
@@ -17,6 +18,9 @@ public class Dragon {
     private String nombre;
     private int intensidadFuego;
     private int resistencia;
+
+    @OneToOne
+    private Bosque bosque;
     
     public Dragon(String nombre, int intensidadFuego, int resistencia) {
         this.nombre = nombre;

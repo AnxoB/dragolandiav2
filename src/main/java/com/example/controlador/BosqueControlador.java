@@ -20,7 +20,7 @@ public class BosqueControlador {
 
     public void actualizarBosque(Bosque bosque){
         try (SessionFactory factory = new Configuration().configure("hibernate.cfg.xml").buildSessionFactory();
-             Session session = factory.openSession()) {
+            Session session = factory.openSession()) {
             Transaction tx = session.beginTransaction();
             session.merge(bosque);
             tx.commit();
@@ -31,7 +31,7 @@ public class BosqueControlador {
 
     public void eliminarBosque(Bosque bosque){
         try (SessionFactory factory = new Configuration().configure("hibernate.cfg.xml").buildSessionFactory();
-             Session session = factory.openSession()) {
+            Session session = factory.openSession()) {
             Transaction tx = session.beginTransaction();
             session.remove(bosque);
             tx.commit();
@@ -39,5 +39,4 @@ public class BosqueControlador {
             System.out.println("Error eliminarBosque: " + e.getMessage());
         }
     }
-
 }

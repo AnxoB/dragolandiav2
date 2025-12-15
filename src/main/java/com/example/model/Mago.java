@@ -24,7 +24,7 @@ public class Mago {
     private int vida;
     private int nivelMagia;
 
-    @OneToMany(targetEntity = Hechizo.class)
+    @OneToMany(mappedBy = "mago", cascade = CascadeType.ALL)
     private List<Hechizo> hechizos = new ArrayList<>();
 
     public Mago() {
@@ -34,6 +34,7 @@ public class Mago {
         this.nombre = nombre;
         this.vida = vida;
         this.nivelMagia = nivelMagia;
+        this.hechizos = new ArrayList<>();
     }
 
     public int getId() {
@@ -90,6 +91,7 @@ public class Mago {
 
     public void aprenderHechizo(Hechizo hechizo) {
         hechizos.add(hechizo);
+        hechizo.setMago(this);
     }
 
     @Override
