@@ -1,5 +1,48 @@
 # Documentación del modelo de datos
 
+## Introduccion
+
+## Analisis
+
+### Diagrama de clases
+
+```mermaid
+classDiagram
+    class Bosque{
+      -int id
+      -String nombre
+      -int nivelPeligro
+      +mostrarMonstruo()
+      +añadirMonstruo(Monstruo monstruo)
+      +eliminarMonstruo(Monstruo monstruo)
+    }
+    class Dragon{
+      -int id
+      -String nombre
+      -int intensidadFuego
+      -int resistencia
+      -Bosque Bosque
+      +exhalar(Monstruo monstruo)
+    }
+    class Hechizo{
+      -int id
+      -String nombre
+      -Mago Mago
+      +setMago(Mago mago)
+      +aplicar(Monstruo monstruo)
+    }
+    class Mago{
+        -int id
+        -String nombre
+        -int vida
+        -int nivelMagia
+        -List<Hechizo> hechizos
+        +lanzarHechizo(Monstruo monstruo)
+        +lanzarHechizoMago(Monstruo monstruo, Hechizo hechizo)
+        +aprenderHechizo(Hechizo hechizo)
+    }
+```
+
 ## Diagrama Entidad-Relación (ER)
 
 ```mermaid
