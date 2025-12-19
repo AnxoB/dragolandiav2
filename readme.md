@@ -41,6 +41,14 @@ classDiagram
         +lanzarHechizoMago(Monstruo monstruo, Hechizo hechizo)
         +aprenderHechizo(Hechizo hechizo)
     }
+    class Monstruo{
+        -int id
+        -String nombre
+        -int vida
+        -int fuerza
+        -tipoMonstruo Monstruo
+        +atacar(Mago mago)
+    }
 ```
 
 ## Diagrama Entidad-Relación (ER)

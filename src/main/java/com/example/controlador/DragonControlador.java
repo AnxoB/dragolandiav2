@@ -19,4 +19,26 @@ public class DragonControlador {
             System.out.println("Error: " + e.getMessage());
         }
     }
+
+    public void actualizarDragon(Dragon dragon){
+        try (SessionFactory factory = new Configuration().configure("hibernate.cfg.xml").buildSessionFactory()){
+            Session session = factory.openSession();
+            Transaction tx = session.beginTransaction();
+            session.merge(dragon);
+            tx.commit();
+        } catch (Exception e) {
+            System.out.println("Error: " + e.getMessage());
+        }
+    }
+
+    public void eliminarDragon(Dragon dragon){
+        try (SessionFactory factory = new Configuration().configure("hibernate.cfg.xml").buildSessionFactory()){
+            Session session = factory.openSession();
+            Transaction tx = session.beginTransaction();
+            session.remove(dragon);
+            tx.commit();
+        } catch (Exception e) {
+            System.out.println("Error: " + e.getMessage());
+        }
+    }
 }

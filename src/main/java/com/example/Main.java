@@ -15,6 +15,8 @@ import com.example.model.Mago;
 import com.example.model.Monstruo;
 import com.example.model.Rayo;
 
+//Usar EntityManager para la conexion
+
 public class Main {
 
     public static void main(String[] args) {

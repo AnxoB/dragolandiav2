@@ -19,4 +19,26 @@ public class HechizoControlador {
             System.out.println("Error: " + e.getMessage());
         }
     }
+    
+    public void actualizarHechizo(Hechizo hechizo){
+        try (SessionFactory factory = new Configuration().configure("hibernate.cfg.xml").buildSessionFactory()){
+            Session session = factory.openSession();
+            Transaction tx = session.beginTransaction();
+            session.merge(hechizo);
+            tx.commit();
+        } catch (Exception e) {
+            System.out.println("Error: " + e.getMessage());
+        }
+    }
+
+    public void eliminarHechizo(Hechizo hechizo){
+        try (SessionFactory factory = new Configuration().configure("hibernate.cfg.xml").buildSessionFactory()){
+            Session session = factory.openSession();
+            Transaction tx = session.beginTransaction();
+            session.remove(hechizo);
+            tx.commit();;
+        } catch (Exception e) {
+            System.out.println("Error: " + e.getMessage());
+        }
+    }
 }

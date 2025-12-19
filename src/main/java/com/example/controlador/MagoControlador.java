@@ -22,7 +22,7 @@ public class MagoControlador {
 
     public void actualizarBosque(Mago mago){
         try (SessionFactory factory = new Configuration().configure("hibernate.cfg.xml").buildSessionFactory();
-             Session session = factory.openSession()) {
+            Session session = factory.openSession()) {
             Transaction tx = session.beginTransaction();
             session.merge(mago);
             tx.commit();
