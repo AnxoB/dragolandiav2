@@ -5,40 +5,51 @@ import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.hibernate.cfg.Configuration;
 
+import com.example.HibernateUtil;
+import com.example.model.Dragon;
 import com.example.model.Hechizo;
 
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.EntityTransaction;
+
 public class HechizoControlador {
-    public void guardarHechizo(Hechizo hechizo){
-        Session session = null;
-        try (SessionFactory factory = new Configuration().configure("hibernate.cfg.xml").buildSessionFactory()){
-            session=factory.openSession();
-            Transaction tx = session.beginTransaction();
-            session.persist(hechizo);
+    //Metodo para guardar el Hechizo
+    public void guardarHechizo(Hechizo hechizo) {
+        EntityTransaction tx = null;
+        try(EntityManager em = HibernateUtil.getEntityManager()) {
+            tx = em.getTransaction();
+            tx.begin();
+            em.persist(hechizo); // Guardar hechizo en la base de datos
             tx.commit();
         } catch (Exception e) {
-            System.out.println("Error: " + e.getMessage());
-        }
-    }
-    
-    public void actualizarHechizo(Hechizo hechizo){
-        try (SessionFactory factory = new Configuration().configure("hibernate.cfg.xml").buildSessionFactory()){
-            Session session = factory.openSession();
-            Transaction tx = session.beginTransaction();
-            session.merge(hechizo);
-            tx.commit();
-        } catch (Exception e) {
-            System.out.println("Error: " + e.getMessage());
+            System.out.println("Error guardarHechizo: " + e.getMessage());
         }
     }
 
-    public void eliminarHechizo(Hechizo hechizo){
-        try (SessionFactory factory = new Configuration().configure("hibernate.cfg.xml").buildSessionFactory()){
-            Session session = factory.openSession();
-            Transaction tx = session.beginTransaction();
-            session.remove(hechizo);
-            tx.commit();;
+    //Método para actualizar el hechizo
+    public void actualizarBosque(Hechizo hechizo) {
+        EntityTransaction tx = null;
+        try(EntityManager em = HibernateUtil.getEntityManager()) {
+            tx = em.getTransaction();
+            tx.begin();
+            em.merge(hechizo); //operacion que actualiza el hechizo
+            tx.commit();
         } catch (Exception e) {
-            System.out.println("Error: " + e.getMessage());
+            System.out.println("Error actualizarHechizo: " + e.getMessage());
+        }
+    }
+
+    //Metodo para eliminar el bosque
+    public void eliminarBosque(Hechizo hechizo) {
+        EntityTransaction tx = null;
+        try(EntityManager em = HibernateUtil.getEntityManager()) {
+            tx = em.getTransaction();
+            tx.begin();
+            hechizo = em.merge(hechizo); // Asegurarse de que el hechizo está gestionado por el EntityManager
+            em.remove(hechizo); // Eliminar el hechizo de la base de datos
+            tx.commit();
+        } catch (Exception e) {
+            System.out.println("Error eliminarHechizo: " + e.getMessage());
         }
     }
 }

@@ -89,6 +89,14 @@ public class Mago {
         }
     }
 
+    public boolean conoceHechizo(Hechizo hechizo){
+        boolean contiene = false;
+        if (hechizos.contains(hechizo)) {
+            contiene=true;
+        }
+        return contiene;
+    }
+
     public void aprenderHechizo(Hechizo hechizo) {
         hechizos.add(hechizo);
         hechizo.setMago(this);

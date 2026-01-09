@@ -1,6 +1,7 @@
 # Documentación del modelo de datos
 
 ## Introduccion
+El ejercicio trata de realizar una aplicación de aventura medieval que usando MYSQL e Hibernate gestiona una base de datos dragolandia.
 
 ## Analisis
 
@@ -77,6 +78,15 @@ erDiagram
         int nivelPeligro
     }
 
+    DRAGON {
+        int id PK
+        String nombre 
+        int intensidadFuego
+        int resistencia
+    }
+
     %% Relaciones
     BOSQUE ||--o{ MONSTRUO : "monstruosJefe"
+    
+
 ```

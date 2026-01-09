@@ -29,11 +29,9 @@ public class Batalla {
         while (!monstruos.isEmpty() && !magos.isEmpty()) {
             System.out.println("Nueva ronda de batalla...");
 
-            // Paso a): Magos lanzan conjuros
+            // Magos lanzan conjuros
             for (Mago mago : magos) {
                 if (mago.getVida() <= 0) continue; // Saltar magos eliminados
-
-                /* 
 
                 for (Hechizo hechizo : hechizosJuego) {
                     if (mago.conoceHechizo(hechizo)) {
@@ -52,11 +50,9 @@ public class Batalla {
                         System.out.println(mago.getNombre() + " pierde 1 punto de vida por no conocer el hechizo.");
                     }
                 }
-
-                */
             }
 
-            // Paso b): Cada monstruo ataca a un mago
+            // Cada monstruo ataca a un mago
             for (Monstruo monstruo : monstruos) {
                 if (magos.isEmpty()) break;
 
@@ -69,9 +65,9 @@ public class Batalla {
                 }
             }
 
-            // Paso c): Dragón ataca al monstruo jefe
+            // Dragón ataca al monstruo jefe
             if (jefeMonstruo != null) {
-                //dragon.atacar(jefeMonstruo);
+                dragon.exhalar(jefeMonstruo);
                 System.out.println(dragon.getNombre() + " ataca al jefe del bosque, " + jefeMonstruo.getNombre() + ".");
                 if (jefeMonstruo.getVida() <= 0) {
                     System.out.println(jefeMonstruo.getNombre() + " ha sido derrotado. Asignando nuevo jefe...");

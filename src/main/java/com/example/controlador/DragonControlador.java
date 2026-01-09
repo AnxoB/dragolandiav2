@@ -5,40 +5,51 @@ import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.hibernate.cfg.Configuration;
 
+import com.example.HibernateUtil;
+import com.example.model.Bosque;
 import com.example.model.Dragon;
 
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.EntityTransaction;
+
 public class DragonControlador {
-    public void guardarDragon(Dragon dragon){
-        Session session = null;
-        try (SessionFactory factory = new Configuration().configure("hibernate.cfg.xml").buildSessionFactory()){
-            session=factory.openSession();
-            Transaction tx = session.beginTransaction();
-            session.persist(dragon);
+    //Metodo para guardar el dragon
+    public void guardarDragon(Dragon dragon) {
+        EntityTransaction tx = null;
+        try(EntityManager em = HibernateUtil.getEntityManager()) {
+            tx = em.getTransaction();
+            tx.begin();
+            em.persist(dragon); // Guardar dragon en la base de datos
             tx.commit();
         } catch (Exception e) {
-            System.out.println("Error: " + e.getMessage());
+            System.out.println("Error guardarDragon: " + e.getMessage());
         }
     }
 
-    public void actualizarDragon(Dragon dragon){
-        try (SessionFactory factory = new Configuration().configure("hibernate.cfg.xml").buildSessionFactory()){
-            Session session = factory.openSession();
-            Transaction tx = session.beginTransaction();
-            session.merge(dragon);
+    //Método para actualizar el dragon
+    public void actualizarBosque(Dragon dragon) {
+        EntityTransaction tx = null;
+        try(EntityManager em = HibernateUtil.getEntityManager()) {
+            tx = em.getTransaction();
+            tx.begin();
+            em.merge(dragon); //operacion que actualiza el dragon
             tx.commit();
         } catch (Exception e) {
-            System.out.println("Error: " + e.getMessage());
+            System.out.println("Error actualizarDragon: " + e.getMessage());
         }
     }
 
-    public void eliminarDragon(Dragon dragon){
-        try (SessionFactory factory = new Configuration().configure("hibernate.cfg.xml").buildSessionFactory()){
-            Session session = factory.openSession();
-            Transaction tx = session.beginTransaction();
-            session.remove(dragon);
+    //Metodo para eliminar el bosque
+    public void eliminarBosque(Dragon dragon) {
+        EntityTransaction tx = null;
+        try(EntityManager em = HibernateUtil.getEntityManager()) {
+            tx = em.getTransaction();
+            tx.begin();
+            dragon = em.merge(dragon); // Asegurarse de que el dragon está gestionado por el EntityManager
+            em.remove(dragon); // Eliminar el dragon de la base de datos
             tx.commit();
         } catch (Exception e) {
-            System.out.println("Error: " + e.getMessage());
+            System.out.println("Error eliminarDragon: " + e.getMessage());
         }
     }
 }

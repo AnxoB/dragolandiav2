@@ -1,11 +1,15 @@
 package com.example;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import com.example.controlador.BosqueControlador;
 import com.example.controlador.DragonControlador;
 import com.example.controlador.HechizoControlador;
 import com.example.controlador.MagoControlador;
 import com.example.controlador.MonstruoControlador;
 import com.example.interfaz.Interfaz;
+import com.example.model.Batalla;
 import com.example.model.BolaFuego;
 import com.example.model.BolaNieve;
 import com.example.model.Bosque;
@@ -27,67 +31,65 @@ public class Main {
         DragonControlador dragonCtrl = new DragonControlador();
         HechizoControlador hechizoCtrl = new HechizoControlador();
 
-        // Crear mago
-        Mago mago = interfaz.crearMago();
-        magoCtrl.guardarMago(mago);
+        // Crear mago2
+        Mago mago1 = interfaz.crearMago();
+        magoCtrl.guardarMago(mago1);
+        Mago mago2 = interfaz.crearMago();
+        magoCtrl.guardarMago(mago2);
 
-        //Creamos los hechizos y los guardamos
+        //Creamos los hechizos
         Hechizo bolaFuego = new BolaFuego();
         Hechizo rayo = new Rayo();
         Hechizo bolaNieve = new BolaNieve();
         
-
-
         // El mago aprende los hechizos
-        mago.aprenderHechizo(bolaFuego);
-        mago.aprenderHechizo(rayo);
+        mago1.aprenderHechizo(bolaFuego);
+        mago1.aprenderHechizo(rayo);
 
+        mago2.aprenderHechizo(bolaNieve);
+        mago2.aprenderHechizo(rayo);
+
+        //Guardamos los hechizos
         hechizoCtrl.guardarHechizo(bolaFuego);
         hechizoCtrl.guardarHechizo(rayo);
         hechizoCtrl.guardarHechizo(bolaNieve);
-        // Crear bosque
+        
+        List<Mago> magos = new ArrayList<>(); // Lista de magos
+        List<Hechizo> hechizosJuego = new ArrayList<>(); // Lista de conjuros
+    
+        //Añadimos los magos creados a la lista de magos
+        magos.add(mago1);
+        magos.add(mago2);
+
+        //Añadismos los hechizo creados a la lista de hechizos
+        hechizosJuego.add(bolaFuego);
+        hechizosJuego.add(rayo);
+        hechizosJuego.add(bolaNieve);
+
+        // Crear bosque y monstruos
         Bosque bosque = interfaz.crearBosque();
 
-        // Guardar cada monstruo del bosque
-        for (Monstruo m : bosque.getListasMonstruos()) {
-            monstruoCtrl.guardarMonstruo(m);
-        }
+        //Guardamos el bosque
+        bosqueCtrl.guardarBosque(bosque);
 
-        // Crear Dragon
+
+        //Crear monstruos y guardarlos
+        Monstruo monstruo1 = interfaz.crearMonstruo();
+        monstruoCtrl.guardarMonstruo(monstruo1);
+        Monstruo monstruo2 = interfaz.crearMonstruo();
+        monstruoCtrl.guardarMonstruo(monstruo2);
+        Monstruo monstruo3 = interfaz.crearMonstruo();
+        monstruoCtrl.guardarMonstruo(monstruo3);
+
+        List<Monstruo> monstruos = bosque.getListasMonstruos();
+        Monstruo jefeMonstruo = monstruos.get(0); // Asignar el primer monstruo como jefe
+
+        // Crear dragón
         Dragon dragon = interfaz.crearDragon();
         dragonCtrl.guardarDragon(dragon);
 
-        // Guardar el bosque completo
-        bosqueCtrl.guardarBosque(bosque);
-
-        // Seleccionar el primer monstruo para la batalla
-        if (bosque.getListasMonstruos().isEmpty()) {
-            System.out.println("El bosque no tiene monstruos jefe. No hay batalla.");
-            return;
-        }
-
-        Monstruo monstruo = bosque.getListasMonstruos().get(0);
-
-        System.out.println("\n¡Comienza la batalla en el bosque " + bosque.getNombre() + "!\n");
-
-        //Simular batalla
-        while (mago.getVida() > 0 && monstruo.getVida() > 0) {
-            mago.lanzarHechizoMago(monstruo, rayo);
-            System.out.println("El mago lanza un hechizo. Vida del monstruo: " + monstruo.getVida());
-
-            if (monstruo.getVida() <= 0)
-                break;
-
-            monstruo.atacar(mago);
-            System.out.println("El monstruo ataca. Vida del mago: " + mago.getVida());
-        }
-
-        //Resultado final
-        System.out.println("\nBatalla terminada.");
-        if (mago.getVida() > 0) {
-            System.out.println("El mago sobrevive y domina el bosque.");
-        } else {
-            System.out.println("El monstruo sobrevive y domina el bosque.");
-        }
+        // Iniciar la batalla
+        Batalla batalla = new Batalla(magos, monstruos, dragon, jefeMonstruo);
+        batalla.iniciarBatalla(bosque.getNombre(), hechizosJuego);
     }
 }

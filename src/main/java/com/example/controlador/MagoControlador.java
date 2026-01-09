@@ -5,40 +5,51 @@ import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.hibernate.cfg.Configuration;
 
+import com.example.HibernateUtil;
+import com.example.model.Hechizo;
 import com.example.model.Mago;
 
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.EntityTransaction;
+
 public class MagoControlador {
-    public void guardarMago(Mago mago){
-        Session session;
-        try (SessionFactory factory = new Configuration().configure("hibernate.cfg.xml").buildSessionFactory()){
-            session=factory.openSession();
-            Transaction tx = session.beginTransaction();
-            session.persist(mago);
+    //Metodo para guardar el Mago
+    public void guardarMago(Mago mago) {
+        EntityTransaction tx = null;
+        try(EntityManager em = HibernateUtil.getEntityManager()) {
+            tx = em.getTransaction();
+            tx.begin();
+            em.persist(mago); // Guardar mago en la base de datos
             tx.commit();
         } catch (Exception e) {
-            System.out.println("Error: " + e.getMessage());
+            System.out.println("Error guardarMago: " + e.getMessage());
         }
     }
 
-    public void actualizarBosque(Mago mago){
-        try (SessionFactory factory = new Configuration().configure("hibernate.cfg.xml").buildSessionFactory();
-            Session session = factory.openSession()) {
-            Transaction tx = session.beginTransaction();
-            session.merge(mago);
+    //Método para actualizar el Mago
+    public void actualizarBosque(Mago mago) {
+        EntityTransaction tx = null;
+        try(EntityManager em = HibernateUtil.getEntityManager()) {
+            tx = em.getTransaction();
+            tx.begin();
+            em.merge(mago); //operacion que actualiza el mago
             tx.commit();
         } catch (Exception e) {
-            System.out.println("Error actualizarBosque: " + e.getMessage());
+            System.out.println("Error actualizarMago: " + e.getMessage());
         }
     }
 
-    public void eliminarBosque(Mago mago){
-        try (SessionFactory factory = new Configuration().configure("hibernate.cfg.xml").buildSessionFactory();
-             Session session = factory.openSession()) {
-            Transaction tx = session.beginTransaction();
-            session.remove(mago);
+    //Metodo para eliminar el bosque
+    public void eliminarBosque(Mago mago) {
+        EntityTransaction tx = null;
+        try(EntityManager em = HibernateUtil.getEntityManager()) {
+            tx = em.getTransaction();
+            tx.begin();
+            mago = em.merge(mago); // Asegurarse de que el mago está gestionado por el EntityManager
+            em.remove(mago); // Eliminar el mago de la base de datos
             tx.commit();
         } catch (Exception e) {
-            System.out.println("Error eliminarBosque: " + e.getMessage());
+            System.out.println("Error eliminarMago: " + e.getMessage());
         }
     }
 }
