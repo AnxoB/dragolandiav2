@@ -6,6 +6,7 @@ import org.hibernate.Transaction;
 import org.hibernate.cfg.Configuration;
 
 import com.example.HibernateUtil;
+import com.example.model.Dragon;
 import com.example.model.Hechizo;
 import com.example.model.Mago;
 
@@ -50,6 +51,16 @@ public class MagoControlador {
             tx.commit();
         } catch (Exception e) {
             System.out.println("Error eliminarMago: " + e.getMessage());
+        }
+    }
+
+    public Mago consultarMago(int id) {
+        try (EntityManager em = HibernateUtil.getEntityManager()) {
+            // Uso del método find con la clase Dragon y el id
+            return em.find(Mago.class, id);
+        } catch (Exception e) {
+            System.out.println("Error consultarMago: " + e.getMessage());
+            return null;
         }
     }
 }

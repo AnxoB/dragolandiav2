@@ -75,10 +75,13 @@ public class Main {
 
         //Crear monstruos y guardarlos
         Monstruo monstruo1 = interfaz.crearMonstruo();
+        bosque.añadirMonstruo(monstruo1);
         monstruoCtrl.guardarMonstruo(monstruo1);
         Monstruo monstruo2 = interfaz.crearMonstruo();
+        bosque.añadirMonstruo(monstruo2);
         monstruoCtrl.guardarMonstruo(monstruo2);
         Monstruo monstruo3 = interfaz.crearMonstruo();
+        bosque.añadirMonstruo(monstruo3);
         monstruoCtrl.guardarMonstruo(monstruo3);
 
         List<Monstruo> monstruos = bosque.getListasMonstruos();

@@ -52,4 +52,14 @@ public class DragonControlador {
             System.out.println("Error eliminarDragon: " + e.getMessage());
         }
     }
+
+    public Dragon consultarDragon(int id) {
+        try (EntityManager em = HibernateUtil.getEntityManager()) {
+            // Uso del método find con la clase Dragon y el id
+            return em.find(Dragon.class, id);
+        } catch (Exception e) {
+            System.out.println("Error consultarDragon: " + e.getMessage());
+            return null;
+        }
+    }
 }

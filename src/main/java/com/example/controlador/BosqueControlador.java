@@ -50,4 +50,15 @@ public class BosqueControlador {
             System.out.println("Error eliminarBosque: " + e.getMessage());
         }
     }
+
+    //Metodo para consulta
+    public Bosque consultarBosque(int id) {
+    try (EntityManager em = HibernateUtil.getEntityManager()) {
+        // Uso del método find con la clase Bosque y el id
+        return em.find(Bosque.class, id);
+    } catch (Exception e) {
+        System.out.println("Error consultarBosquePorId: " + e.getMessage());
+        return null;
+    }
+}
 }

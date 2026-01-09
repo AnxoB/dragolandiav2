@@ -19,6 +19,7 @@ import jakarta.persistence.Table;
 @Table(name = "Bosque")
 public class Bosque {
 
+    //Definimos el id de la clase
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
@@ -26,15 +27,27 @@ public class Bosque {
     private String nombre;
     private int nivelPeligro;
 
+    //Relacion 1:1 con dragon, añade la columna dragon_id a esta clase
+    @OneToOne
+    @JoinColumn(name = "dragon_id")
+    private Dragon dragon;
+
+    //Relación 1:1 con monstruoJefe
     @OneToOne
     private Monstruo monstruoJefe;
 
+    //Relación 1:N con monstruos
     @OneToMany(targetEntity = Monstruo.class)
     private List<Monstruo> listaMonstruos = new ArrayList<>();
 
     public Bosque() {
     }
 
+    /**
+     * Constructor bosque para crear
+     * @param nombre
+     * @param nivelPeligro
+     */
     public Bosque(String nombre, int nivelPeligro) {
         this.nombre = nombre;
         this.nivelPeligro = nivelPeligro;
@@ -81,6 +94,7 @@ public class Bosque {
         this.listaMonstruos = listaMonstruos;
     }
 
+    //Método para mostrar los monstruos
     public void mostrarMonstruo() {
         if (listaMonstruos == null || listaMonstruos.isEmpty()) {
             System.out.println("Este bosque no tiene ningún monstruo.");

@@ -52,4 +52,14 @@ public class HechizoControlador {
             System.out.println("Error eliminarHechizo: " + e.getMessage());
         }
     }
+
+    public Hechizo consultarHechizo(int id) {
+        try (EntityManager em = HibernateUtil.getEntityManager()) {
+            // Uso del método find con la clase Hechizo y el id
+            return em.find(Hechizo.class, id);
+        } catch (Exception e) {
+            System.out.println("Error consultarHechizo: " + e.getMessage());
+            return null;
+        }
+    }
 }

@@ -11,11 +11,25 @@ import java.util.Iterator;
 import java.util.List;
 
 public class Batalla {
+
+    /*Tengo dudas de donde colocar esta clase (creo que la tengo mal en modelo) 
+    y también mezclo lógica con salida por lo que habría que dividirla en la vista esa
+    parte, pero lo agrupé en una sola porque necesito echarle mas tiempo a realizarla
+    de la forma correcta
+    */
+
     private List<Mago> magos;
     private List<Monstruo> monstruos;
     private Dragon dragon;
     private Monstruo jefeMonstruo;
 
+    /**
+     * Constructor de Batalla
+     * @param magos
+     * @param monstruos
+     * @param dragon
+     * @param jefeMonstruo
+     */
     public Batalla(List<Mago> magos, List<Monstruo> monstruos, Dragon dragon, Monstruo jefeMonstruo) {
         this.magos = magos;
         this.monstruos = monstruos;
@@ -26,6 +40,7 @@ public class Batalla {
     public void iniciarBatalla(String nombreBosque, List<Hechizo> hechizosJuego) {
         System.out.println("\n--- El juego comienza en el bosque " + nombreBosque + " ---\n");
 
+        //Mientras la lista de monstruos\magos no estean vacias
         while (!monstruos.isEmpty() && !magos.isEmpty()) {
             System.out.println("Nueva ronda de batalla...");
 
@@ -50,6 +65,7 @@ public class Batalla {
                         System.out.println(mago.getNombre() + " pierde 1 punto de vida por no conocer el hechizo.");
                     }
                 }
+                mostrarEstado(nombreBosque);
             }
 
             // Cada monstruo ataca a un mago
@@ -63,6 +79,7 @@ public class Batalla {
                     System.out.println(objetivo.getNombre() + " eliminado.");
                     magos.remove(objetivo); // Eliminar magos que mueran
                 }
+                mostrarEstado(nombreBosque);
             }
 
             // Dragón ataca al monstruo jefe
@@ -85,6 +102,7 @@ public class Batalla {
             mostrarEstado(nombreBosque);
 
 
+            //Aqui imprimos mensaje para el final de la batalla
             System.out.println("\n--- La batalla ha terminado ---");
             if (monstruos.isEmpty()) {
                 System.out.println("No quedan monstruos en el bosque. ¡Los magos ganan!");
@@ -95,6 +113,7 @@ public class Batalla {
 
     }
 
+    //Funcion reutilizable para ir mostrando el estado de la batalla
     private void mostrarEstado(String nombreBosque) {
         System.out.println("\n--- Estado al final de la ronda ---");
         System.out.println("Bosque: " + nombreBosque);

@@ -8,8 +8,10 @@ import com.example.model.Mago;
 import com.example.model.Monstruo;
 
 public class Interfaz {
+    //Inicializamos el scanner
     private Scanner sc = new Scanner(System.in);
 
+    //Funcion para crear el mago, introduciendo el nombre, vida y nivel magia por teclado
     public Mago crearMago() {
         System.out.print("Nombre del mago: ");
         String nombre = sc.nextLine();
@@ -22,7 +24,7 @@ public class Interfaz {
 
         return new Mago(nombre, vida, magia);
     }
-
+    //Funcion para crear el monstruo, introduciendo nombre, vida y fuerza por teclado
     public Monstruo crearMonstruo() {
         System.out.print("Nombre del monstruo: ");
         String nombre = sc.nextLine();
@@ -44,6 +46,7 @@ public class Interfaz {
         return new Monstruo(nombre, vida, fuerza, tipo);
     }
 
+    //Funcion para crear bosque introduciendo nombre y peligro por teclado
     public Bosque crearBosque() {
         System.out.print("Nombre del bosque: ");
         String nombre = sc.nextLine();
@@ -54,19 +57,10 @@ public class Interfaz {
 
         Bosque bosque = new Bosque(nombre, nivel);
 
-        System.out.print("¿Cuántos monstruos jefe tendrá este bosque?: ");
-        int cantidad = sc.nextInt();
-        sc.nextLine();
-
-        for (int i = 0; i < cantidad; i++) {
-            System.out.println("\n--- Crear monstruo jefe #" + (i + 1) + " ---");
-            Monstruo m = crearMonstruo();
-            bosque.getListasMonstruos().add(m);
-        }
-
         return bosque;
     }
 
+    //Funcion crear Dragon introduciendo nombre, intensidad y resistencia por teclado
     public Dragon crearDragon(){
         System.out.print("Nombre del dragon: ");
         String nombre = sc.nextLine();
@@ -82,6 +76,7 @@ public class Interfaz {
         return new Dragon(nombre, intensidad, resistencia);
     }
 
+    //Esto permite no tener que andar inicializando scanner en otros sitios
     public Scanner getScanner() {
         return sc;
     }
