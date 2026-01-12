@@ -192,3 +192,7 @@ erDiagram
     BOSQUE ||--|| MONSTRUO : jefe    
     MAGO ||--o{ ITEM : posee       
 ```
+
+## Manual Usuario
+
+Este es el manual de usuario del programa: [ManualUsuario](./manualUsuario.md)

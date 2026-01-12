@@ -91,6 +91,9 @@ public class Main {
         Dragon dragon = interfaz.crearDragon();
         dragonCtrl.guardarDragon(dragon);
 
+        //Actualizamos el bosque
+        bosqueCtrl.actualizarBosque(bosque);
+
         // Iniciar la batalla
         Batalla batalla = new Batalla(magos, monstruos, dragon, jefeMonstruo);
         batalla.iniciarBatalla(bosque.getNombre(), hechizosJuego);

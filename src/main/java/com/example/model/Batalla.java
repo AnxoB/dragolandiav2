@@ -41,8 +41,9 @@ public class Batalla {
         System.out.println("\n--- El juego comienza en el bosque " + nombreBosque + " ---\n");
 
         //Mientras la lista de monstruos\magos no estean vacias
+        /* 
         while (!monstruos.isEmpty() && !magos.isEmpty()) {
-            System.out.println("Nueva ronda de batalla...");
+            System.out.println("Nueva ronda de batalla..."); */
 
             // Magos lanzan conjuros
             for (Mago mago : magos) {
@@ -103,13 +104,14 @@ public class Batalla {
 
 
             //Aqui imprimos mensaje para el final de la batalla
+            /* 
             System.out.println("\n--- La batalla ha terminado ---");
             if (monstruos.isEmpty()) {
                 System.out.println("No quedan monstruos en el bosque. ¡Los magos ganan!");
             } else if (magos.isEmpty()) {
                 System.out.println("No quedan magos. ¡Los monstruos dominan el bosque!");
             }
-        }
+        } */
 
     }
 
