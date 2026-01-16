@@ -11,7 +11,7 @@ public class BolaNieve extends Hechizo {
         this.nombre = "Bola de nieve";
     }
 
-    //Sobreescribimos la fncion aplicar para personalizar el daño
+    //Sobreescribimos la función aplicar para personalizar el daño
     @Override
     public void aplicar(Monstruo monstruo) {
         monstruo.setVida(0);

@@ -24,6 +24,7 @@ import com.example.model.Rayo;
 public class Main {
 
     public static void main(String[] args) {
+        //Crear los controladores
         Interfaz interfaz = new Interfaz();
         MagoControlador magoCtrl = new MagoControlador();
         MonstruoControlador monstruoCtrl = new MonstruoControlador();

@@ -27,9 +27,15 @@ public class Mago {
     @OneToMany(mappedBy = "mago", cascade = CascadeType.ALL)
     private List<Hechizo> hechizos = new ArrayList<>();
 
-    public Mago() {
-    }
+    //Constructor vacio para JPA
+    public Mago() {}
 
+    /**
+     * Constructor para crear un Mago
+     * @param nombre
+     * @param vida
+     * @param nivelMagia
+     */
     public Mago(String nombre, int vida, int nivelMagia) {
         this.nombre = nombre;
         this.vida = vida;
@@ -37,6 +43,7 @@ public class Mago {
         this.hechizos = new ArrayList<>();
     }
 
+    //Getters y Setters
     public int getId() {
         return id;
     }
@@ -57,6 +64,7 @@ public class Mago {
         return vida;
     }
 
+    //Si la vida llegase a ser negativa se iguala a 0
     public void setVida(int vida) {
         if (vida < 0) {
             this.vida = 0;
@@ -69,6 +77,7 @@ public class Mago {
         return nivelMagia;
     }
 
+    //Si el nivel de magia llega a ser negativo se iguala 0
     public void setNivelMagia(int nivelMagia) {
         if (nivelMagia < 0) {
             this.nivelMagia = 0;
@@ -77,10 +86,20 @@ public class Mago {
         }
     }
 
+    /**
+     * Metodo lanzarHechizo que recibe un monstruo
+     * A la vida del monstruo se le resta el nivel de magia del mago
+     * @param monstruo
+     */
     public void lanzarHechizo(Monstruo monstruo) {
         monstruo.setVida(monstruo.getVida() - getNivelMagia());
     }
 
+    /**
+     * Metodo para lanzar hechizo mago
+     * @param monstruo
+     * @param hechizo
+     */
     public void lanzarHechizoMago(Monstruo monstruo, Hechizo hechizo) {
         if (hechizos.contains(hechizo)) {
             hechizo.aplicar(monstruo);
@@ -97,6 +116,10 @@ public class Mago {
         return contiene;
     }
 
+    /**
+     * Metodo
+     * @param hechizo
+     */
     public void aprenderHechizo(Hechizo hechizo) {
         hechizos.add(hechizo);
         hechizo.setMago(this);

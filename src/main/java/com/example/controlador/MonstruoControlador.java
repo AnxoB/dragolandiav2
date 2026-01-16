@@ -12,6 +12,10 @@ import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityTransaction;
 
 public class MonstruoControlador {
+    /**
+     * Metodo para guardar un monstruo
+     * @param monstruo
+     */
     public void guardarMonstruo(Monstruo monstruo) {
         EntityTransaction tx = null;
         try(EntityManager em = HibernateUtil.getEntityManager()) {
@@ -24,7 +28,10 @@ public class MonstruoControlador {
         }
     }
 
-    //Método para actualizar el Monstruo
+    /**
+     * Metodo para actualizar un monstruo
+     * @param monstruo
+     */
     public void actualizarBosque(Monstruo monstruo) {
         EntityTransaction tx = null;
         try(EntityManager em = HibernateUtil.getEntityManager()) {
@@ -37,7 +44,10 @@ public class MonstruoControlador {
         }
     }
 
-    //Metodo para eliminar el bosque
+    /**
+     * Metodo para eliminar el bosque
+     * @param monstruo
+     */
     public void eliminarBosque(Monstruo monstruo) {
         EntityTransaction tx = null;
         try(EntityManager em = HibernateUtil.getEntityManager()) {
@@ -51,6 +61,11 @@ public class MonstruoControlador {
         }
     }
 
+    /**
+     * Metodo para consultar el monstruo por id
+     * @param id
+     * @return
+     */
     public Monstruo consultarMonstruo(int id) {
         try (EntityManager em = HibernateUtil.getEntityManager()) {
             // Uso del método find con la clase Dragon y el id

@@ -14,7 +14,11 @@ import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityTransaction;
 
 public class MagoControlador {
-    //Metodo para guardar el Mago
+
+    /**
+     * Metodo para guardar un mago
+     * @param mago
+     */
     public void guardarMago(Mago mago) {
         EntityTransaction tx = null;
         try(EntityManager em = HibernateUtil.getEntityManager()) {
@@ -27,7 +31,10 @@ public class MagoControlador {
         }
     }
 
-    //Método para actualizar el Mago
+    /**
+     * Metodo para actualizar un bosque
+     * @param mago
+     */
     public void actualizarBosque(Mago mago) {
         EntityTransaction tx = null;
         try(EntityManager em = HibernateUtil.getEntityManager()) {
@@ -40,7 +47,10 @@ public class MagoControlador {
         }
     }
 
-    //Metodo para eliminar el bosque
+    /**
+     * Metodo para eliminar un bosque
+     * @param mago
+     */
     public void eliminarBosque(Mago mago) {
         EntityTransaction tx = null;
         try(EntityManager em = HibernateUtil.getEntityManager()) {
@@ -54,6 +64,11 @@ public class MagoControlador {
         }
     }
 
+    /**
+     * Metodo para consultar el mago por el id
+     * @param id
+     * @return
+     */
     public Mago consultarMago(int id) {
         try (EntityManager em = HibernateUtil.getEntityManager()) {
             // Uso del método find con la clase Dragon y el id

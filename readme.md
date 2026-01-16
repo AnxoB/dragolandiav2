@@ -56,7 +56,9 @@ classDiagram
     }
 ```
 
-## Diagrama Entidad-Relación (ER)
+## Diseño
+
+### Diagrama Entidad-Relación (ER)
 
 ```mermaid
 erDiagram
@@ -104,6 +106,8 @@ erDiagram
 
 ## Futuras Mejoras
 
+### Descripción
+
 Como futuras mejores veo que se podría añadir:
 
 - Una lógica del juego que no está implementada ahora, que según aumente el nivel de peligro del bosque, aumente la fuerza y la vida de los enemigos. Además, también podemos introducir mucha más aleatoriedad haciendo que la aparición de enemigos se generen de forma random para que las partidas sean diferentes.
@@ -138,7 +142,7 @@ classDiagram
     }
 ```
 
-## Diagrama Entidad-Relación (ER)
+### Diagrama Entidad-Relación (ER)
 
 Ahora añadimos al diagrama ER la entidad ítem, y la relacionamos 1:N con los Magos ya que 1 Mago puede tener N ítems
 
@@ -196,3 +200,7 @@ erDiagram
 ## Manual Usuario
 
 Este es el manual de usuario del programa: [ManualUsuario](./manualUsuario.md)
+
+## Pdf de ejecución
+
+Este es el pdf de ejecución del programa: [PDFImagenes](AnxoBua_DragolandiaHibernate.pdf)

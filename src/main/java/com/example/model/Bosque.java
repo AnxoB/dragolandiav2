@@ -15,6 +15,7 @@ import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 
+//Anotacion JPA para definir la entidad
 @Entity
 @Table(name = "Bosque")
 public class Bosque {
@@ -53,7 +54,8 @@ public class Bosque {
         this.nivelPeligro = nivelPeligro;
         this.listaMonstruos = new ArrayList<>();
     }
-                        
+               
+    //Getters y Setters
     public Monstruo getMonstruoJefe() {
         return monstruoJefe;
     }
@@ -107,10 +109,18 @@ public class Bosque {
         }
     }
 
+    /**
+     * Metodo para añadir el monstruo
+     * @param monstruo
+     */
     public void añadirMonstruo(Monstruo monstruo) {
         listaMonstruos.add(monstruo);
     }
 
+    /**
+     * Metodo para eliminar el monstruo
+     * @param monstruo
+     */
     public void eliminarMonstruo(Monstruo monstruo) {
         listaMonstruos.remove(monstruo);
     }

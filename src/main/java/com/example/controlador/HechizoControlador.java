@@ -13,7 +13,11 @@ import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityTransaction;
 
 public class HechizoControlador {
-    //Metodo para guardar el Hechizo
+
+    /**
+     * Metodo para guardar un hechizo
+     * @param hechizo
+     */
     public void guardarHechizo(Hechizo hechizo) {
         EntityTransaction tx = null;
         try(EntityManager em = HibernateUtil.getEntityManager()) {
@@ -26,8 +30,11 @@ public class HechizoControlador {
         }
     }
 
-    //Método para actualizar el hechizo
-    public void actualizarBosque(Hechizo hechizo) {
+    /**
+     * Metodo para actualizar un hechizo
+     * @param hechizo
+     */
+    public void actualizarHechizo(Hechizo hechizo) {
         EntityTransaction tx = null;
         try(EntityManager em = HibernateUtil.getEntityManager()) {
             tx = em.getTransaction();
@@ -39,8 +46,11 @@ public class HechizoControlador {
         }
     }
 
-    //Metodo para eliminar el bosque
-    public void eliminarBosque(Hechizo hechizo) {
+    /**
+     * Metodo para eliminar un hechizo
+     * @param hechizo
+     */
+    public void eliminarHechizo(Hechizo hechizo) {
         EntityTransaction tx = null;
         try(EntityManager em = HibernateUtil.getEntityManager()) {
             tx = em.getTransaction();
@@ -53,6 +63,11 @@ public class HechizoControlador {
         }
     }
 
+    /**
+     * Metodo para consultar un hechizo por id
+     * @param id
+     * @return
+     */
     public Hechizo consultarHechizo(int id) {
         try (EntityManager em = HibernateUtil.getEntityManager()) {
             // Uso del método find con la clase Hechizo y el id

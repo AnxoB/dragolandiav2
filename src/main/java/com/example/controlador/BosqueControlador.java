@@ -11,7 +11,10 @@ import org.hibernate.cfg.Configuration;
 
 public class BosqueControlador {
 
-    // Metodo para guardar el bosque
+    /**
+     * Metodo para guardar el bosque
+     * @param bosque
+     */
     public void guardarBosque(Bosque bosque) {
         EntityTransaction tx = null;
         try (EntityManager em = HibernateUtil.getEntityManager()) {
@@ -24,7 +27,10 @@ public class BosqueControlador {
         }
     }
 
-    // Método para actualizar el bosque
+    /**
+     * Metodo para actualizar el bosque
+     * @param bosque
+     */
     public void actualizarBosque(Bosque bosque) {
         EntityTransaction tx = null;
         try (EntityManager em = HibernateUtil.getEntityManager()) {
@@ -37,7 +43,10 @@ public class BosqueControlador {
         }
     }
 
-    // Metodo para eliminar el bosque
+    /**
+     * Metodo para eliminar el bosque
+     * @param bosque
+     */
     public void eliminarBosque(Bosque bosque) {
         EntityTransaction tx = null;
         try (EntityManager em = HibernateUtil.getEntityManager()) {
@@ -51,7 +60,11 @@ public class BosqueControlador {
         }
     }
 
-    // Metodo para consulta
+    /**
+     * Metodo para consultar el bosque
+     * @param id
+     * @return
+     */
     public Bosque consultarBosque(int id) {
         try (EntityManager em = HibernateUtil.getEntityManager()) {
             // Uso del método find con la clase Bosque y el id

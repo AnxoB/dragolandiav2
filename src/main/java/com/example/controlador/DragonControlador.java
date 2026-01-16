@@ -13,7 +13,11 @@ import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityTransaction;
 
 public class DragonControlador {
-    //Metodo para guardar el dragon
+
+    /**
+     * Metodo para guardar el dragon
+     * @param dragon
+     */
     public void guardarDragon(Dragon dragon) {
         EntityTransaction tx = null;
         try(EntityManager em = HibernateUtil.getEntityManager()) {
@@ -26,8 +30,11 @@ public class DragonControlador {
         }
     }
 
-    //Método para actualizar el dragon
-    public void actualizarBosque(Dragon dragon) {
+    /**
+     * Metodo para actualizar el dragon
+     * @param dragon
+     */
+    public void actualizarDragon(Dragon dragon) {
         EntityTransaction tx = null;
         try(EntityManager em = HibernateUtil.getEntityManager()) {
             tx = em.getTransaction();
@@ -39,8 +46,11 @@ public class DragonControlador {
         }
     }
 
-    //Metodo para eliminar el bosque
-    public void eliminarBosque(Dragon dragon) {
+    /**
+     * Metodo para eliminar el dragon
+     * @param dragon
+     */
+    public void eliminarDragon(Dragon dragon) {
         EntityTransaction tx = null;
         try(EntityManager em = HibernateUtil.getEntityManager()) {
             tx = em.getTransaction();
@@ -53,6 +63,11 @@ public class DragonControlador {
         }
     }
 
+    /**
+     * Metodo para consultar el dragon por id
+     * @param id
+     * @return
+     */
     public Dragon consultarDragon(int id) {
         try (EntityManager em = HibernateUtil.getEntityManager()) {
             // Uso del método find con la clase Dragon y el id
